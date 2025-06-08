@@ -1,5 +1,6 @@
 //Collections page JS and logic
-import { fetchMultipleCardDetails } from './tcgapi.js';
+import { fetchMultipleCardDetails } from './tcgapi.mjs';
+import { navigation,loadHeaderFooter } from './utils.mjs';
 
 const filterSelect = document.getElementById('filterSelect');
 const sortSelect = document.getElementById('sortSelect');
@@ -269,5 +270,12 @@ document.addEventListener('click', async function(event) {
 document.querySelector(".close").addEventListener("click", function() {
     document.getElementById("card-modal").style.display = "none";
 });
+
+async function init() {
+  await loadHeaderFooter();
+  navigation();
+}
+
+init();
 
 loadCollection();

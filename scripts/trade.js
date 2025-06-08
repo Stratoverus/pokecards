@@ -1,3 +1,5 @@
+import { loadHeaderFooter, navigation } from "./utils.mjs";
+
 let cards = [];
 let selectedCards = new Set();
 
@@ -84,3 +86,10 @@ function handleTradeSubmit(event) {
     localStorage.setItem('tradeRequest', JSON.stringify(tradeData));
     window.location.href = 'thankyou.html';
 }
+
+async function init() {
+  await loadHeaderFooter();
+  navigation();
+}
+
+init();
