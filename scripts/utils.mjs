@@ -12,12 +12,23 @@ async function loadTemplate(path) {
 
 }
 
+//Had to make this so that github pages worked and also my local testing environment worked too.
+function getBasePath() {
+  if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
+    return "";
+  }
+
+  return "/pokecards";
+}
+
 export async function loadHeaderFooter() {
-  const header = await loadTemplate("/pokecards/partials/header.html");
+  const basePath = getBasePath();
+
+  const header = await loadTemplate(`${basePath}/partials/header.html`);
   const headerElement = document.querySelector("#start-header");
   renderWithTemplate(header, headerElement)
 
-  const footer = await loadTemplate("/pokecards/partials/footer.html");
+  const footer = await loadTemplate(`${basePath}/partials/footer.html`);
   const footerElement = document.querySelector("#end-footer");
   renderWithTemplate(footer, footerElement)
 
