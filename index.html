@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Keith Eberhard">
+    <meta name="description" content="Course Final for Wdd231 - Keith Eberhard">
+    <script src="scripts/date.js" defer></script>
+    <script src="scripts/navigation.js" defer></script>
+    <script type="module" src="scripts/gallery.js"></script>
+    <title>Final Project Home Page - Keith Eberhard</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/small.css">
+    <link rel="stylesheet" href="styles/larger.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <meta property="og:title" content="Final Project Home Page - Keith Eberhard">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://stratoverus.github.io/wdd231/project/images/pokemon.webp">
+    <meta property="og:url" content="https://stratoverus.github.io/wdd231/project/index.html">
+</head>
+<body>
+    <header>
+        <img src="images/logo.webp" alt="logo">
+        <h1>Keith's Pokémon Collection</h1>
+        <div>
+            <a id="menu" href="#" aria-label="Toggle navigation menu"></a>
+            <nav class="navigation">
+                <a href="index.html" id="home">Home</a>
+                <a href="collection.html" id="collection">My Collection</a>
+                <a href="trading-guide.html" id="trading-guide">Trading Guide</a>
+                <a href="trade.html" id="trade">Trade Request</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <img src="images/pokemontcg.png" alt="Pokemon TCG" class="hero">
+        <div class="hero-text">
+            <div>
+                <h2>Welcome to my Ultimate Pokémon Showcase!</h2>
+            </div>
+            <div>
+                <p>Dive into a world of nostalgia and excitement as you explore my collection! Whether you're a seasons collector or just starting out, I'm sure you'll find some cards that you admire!</p>
+                <a href="trading-guide.html" class="button">Trading Guide</a>
+            </div>
+        </div>
+        <div class="explore-text">
+            <div class="explore-details">
+                <h2>Explore my Pokémon Collection Today!</h2>
+                <p>Welcome to my personal Pokémon vault, where passion meets collection. Inspect individual cards, and see which ones you might want for trade!</p>
+                <a href="collection.html" class="button">Collection</a>
+                <a href="trade-request.html" class="button">Trade with Me!</a>
+            </div>
+            <img src="images/pokemon.webp" alt="More Pokemon TCG">
+        </div>
+        <div>
+            <h2 class="gallery-heading">Discover some of my Rarest and Most Unique Cards in my Collection</h2>
+            <div class="homepage-gallery">
+                <!--Will display cards here, and will use modal's.-->
+
+                <!--Modal will be here-->
+                <div id="card-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <div class="modal-image">
+                            <img id="modal-img" src="images/Pokemon-TCG-Back.webp" alt="Card Image">
+                        </div>
+                        <div class="modal-details">
+                            <h3 id="modal-title"></h3>
+                            <p><strong>Set:</strong> <span id="modal-set"></span></p>
+                            <p><strong>Rarity:</strong> <span id="modal-rarity"></span></p>
+                            <p><strong>Variant:</strong> <span id="modal-variant"></span></p>
+                            <p><strong>Quantity:</strong> <span id="modal-quantity"></span></p>
+                            <p><strong>Price:</strong> <span id="modal-price"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="faq-head">
+                <h2>FAQ</h2>
+                <p>Here are some answers to some popular questions.</p>
+            </div>
+            <div class="faq">
+                <div class="faq-item">
+                    <h4>How do you choose which Pokémon cards to collect?</h4>
+                    <p>I pretty much try to pick up more modern cards, because I do play the card game and want cards that could be relevant to me.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Where do you find your Pokémon Cards?</h4>
+                    <p>I am part of a group where we can update each other and when new cards are restocked.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What's your rarest or favorite card in your collection?</h4>
+                    <p>My favorite card? I have a few that are my favorites right now, I'd have to say my Dragapult Ex card.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do you keep your cards safe and in good condition?</h4>
+                    <p>I have penny sleeves for any card that is worth around or over 50 cents. Then I put those in a binder. For more expensive cards, such as 15 dollars or more, I put them also in a top loader.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can I trade with you or share my collection?</h4>
+                    <p>Yes! I accept trades! Feel free to look through my collection!</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are all the cards on this website part of your real collection?</h4>
+                    <p>Yes they are! It has taken AGES to get all of the information, but this is my collection!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <img src="images/logo.webp" alt="logo">
+        <div>
+            <!--Links will be here-->
+            <p>&copy;<span id="currentYear"></span> Keith Eberhard - Arizona, USA 🌵</p>
+            <p>Last Modified: <span id="lastModified"></span></p>
+        </div>
+        <!--Social media icons here-->
+        <a href="https://www.linkedin.com/in/keitheberhard/" target="_blank">
+            <img src="images/linkedin-icon.png" alt="linkedin" width="30" height="30">
+        </a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Keith Eberhard">
+    <meta name="description" content="Course Final for Wdd231 - Keith Eberhard">
+    <script src="scripts/date.js" defer></script>
+    <script src="scripts/navigation.js" defer></script>
+    <title>Final Project Trading Guide Page - Keith Eberhard</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/small.css">
+    <link rel="stylesheet" href="styles/larger.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
+    <meta property="og:title" content="Final Project Trading Guide Page - Keith Eberhard">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://stratoverus.github.io/wdd231/project/images/pokemon.webp">
+    <meta property="og:url" content="https://stratoverus.github.io/wdd231/project/trading-guide.html">
+</head>
+<body>
+    <header>
+        <img src="images/logo.webp" alt="logo">
+        <h1>Keith's Pokémon Collection</h1>
+        <div>
+            <a id="menu" href="#" aria-label="Toggle navigation menu"></a>
+            <nav class="navigation">
+                <a href="index.html" id="home">Home</a>
+                <a href="collection.html" id="collection">My Collection</a>
+                <a href="trading-guide.html" id="trading-guide">Trading Guide</a>
+                <a href="trade.html" id="trade">Trade Request</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h2 class="guide-heading">Pokémon TCG Trading Guide</h2>
+        <div class="guide-container">
+            <div class="guide-section">
+                <h3>Card Condition Grades</h3>
+                <ul>
+                    <li><strong>Mint (M)</strong> - Perfect condition, no wear</li>
+                    <li><strong>Near Mint (NM)</strong> - Minimal wear, barely noticeable</li>
+                    <li><strong>Lightly Played (LP)</strong> - Light wear visible</li>
+                    <li><strong>Moderately Played (MP)</strong> - Obvious wear but still good condition</li>
+                    <li><strong>Heavily Played (HP)</strong> - Significant wear</li>
+                    <li><strong>Damaged (DMG)</strong> - Severe damage or creases</li>
+                </ul>
+            </div>
+            <div class="guide-section">
+                <h3>Card Value Factors</h3>
+                <ul>
+                    <li>Card Rarity (Common, Uncommon, Rare, Ultra Rare)</li>
+                    <li>Card Generation/Set</li>
+                    <li>Special Features (Holographic, Full Art, etc.)</li>
+                    <li>Current Market Demand</li>
+                    <li>Card Condition</li>
+                </ul>
+            </div>
+            <div class="guide-section">
+                <h3>Trading Best Practices</h3>
+                <ol>
+                    <li>Always check current market prices before trading</li>
+                    <li>Use card sleeves to protect cards during trades</li>
+                    <li>Document the condition of cards with photos</li>
+                    <li>Agree on trade terms before exchanging cards</li>
+                    <li>Use trusted platforms or local card shops for trades</li>
+                </ol>
+            </div>
+            <div class="guide-section">
+                <h3>Understanding Card Rarity</h3>
+                <p>Pokémon cards feature different rarity symbols located at the bottom right corner:</p>
+                <ul>
+                    <li>⚪ Circle: Common cards</li>
+                    <li>⬥ Diamond: Uncommon cards</li>
+                    <li>★ Star: Rare cards</li>
+                    <li>✧ Ultra Rare: Includes Secret Rares, Full Arts, and more</li>
+                </ul>
+            </div>
+
+            <div class="guide-section">
+                <h3>Card Protection Tips</h3>
+                <p>Proper card storage is crucial for maintaining value:</p>
+                <ul>
+                    <li>Use penny sleeves for basic protection</li>
+                    <li>Add top loaders for rigid protection</li>
+                    <li>Store valuable cards in magnetic cases</li>
+                    <li>Keep cards away from direct sunlight</li>
+                    <li>Maintain cards in a cool, dry environment</li>
+                    <li>Consider double-sleeving valuable cards</li>
+                </ul>
+            </div>
+            <div class="guide-section">
+                <h3>Price Checking Guidelines</h3>
+                <p>Before making any trades, research current market values using multiple sources:</p>
+                <ul>
+                    <li>Check recent eBay sold listings</li>
+                    <li>Compare TCGPlayer market prices</li>
+                    <li>Review local card shop pricing</li>
+                    <li>Consider trending popularity</li>
+                    <li>Account for condition differences</li>
+                </ul>
+                <p>Remember that card values can fluctuate based on competitive play meta, new set releases, and collector demand.</p>
+            </div>
+            <div class="guide-section">
+                <h3>Safe Trading Practices</h3>
+                <p>When trading Pokémon cards, always remember these important safety tips:</p>
+                <p>Meet in public places like card shops or libraries during daylight hours. Take photos of all cards before trading, including close-ups of any damage or wear. Consider using card sleeves and top loaders for protection during the trade.</p>
+                <p>For online trades, only use reputable platforms with buyer/seller protection. Always verify the other trader's reputation and history before proceeding with any transaction.</p>
+            </div>
+            <div class="guide-section">
+                <h3>Recommended Trading Resources</h3>
+                <ul>
+                    <li><a href="https://www.tcgplayer.com/" target="_blank">TCGPlayer - Market Prices</a></li>
+                    <li><a href="https://www.psacard.com/" target="_blank">PSA Grading Services</a></li>
+                    <li><a href="https://www.pokellector.com/" target="_blank">Pokellector - Collection Tracking</a></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <img src="images/logo.webp" alt="logo">
+        <div>
+            <!--Links will be here-->
+            <p>&copy;<span id="currentYear"></span> Keith Eberhard - Arizona, USA 🌵</p>
+            <p>Last Modified: <span id="lastModified"></span></p>
+        </div>
+        <!--Social media icons here-->
+        <a href="https://www.linkedin.com/in/keitheberhard/" target="_blank">
+            <img src="images/linkedin-icon.png" alt="linkedin" width="30" height="30">
+        </a>
+    </footer>
+</body>
+</html>
