@@ -19,12 +19,13 @@ function getBasePath() {
 
 export async function loadHeaderFooter() {
   const basePath = getBasePath();
-
+  
+  // Load header from root partials directory
   const header = await loadTemplate(`${basePath}partials/header.html`);
   const headerElement = document.querySelector("#start-header");
   renderWithTemplate(header, headerElement);
 
-  //Fix navigation links
+  // Fix navigation links
   headerElement.querySelectorAll('nav a').forEach(link => {
     const href = link.getAttribute('href');
     if (href !== '#') {  // Skip the menu toggle button
@@ -32,18 +33,19 @@ export async function loadHeaderFooter() {
     }
   });
 
-  //Fix header image paths
+  // Fix header image paths
   headerElement.querySelectorAll('img').forEach(img => {
     if (img.src.includes('images/')) {
       img.src = `${basePath}${img.getAttribute('src')}`;
     }
   });
 
+  // Load footer from root partials directory
   const footer = await loadTemplate(`${basePath}partials/footer.html`);
   const footerElement = document.querySelector("#end-footer");
   renderWithTemplate(footer, footerElement);
 
-  //Fix footer image paths
+  // Fix footer image paths
   footerElement.querySelectorAll('img').forEach(img => {
     if (img.src.includes('images/')) {
       img.src = `${basePath}${img.getAttribute('src')}`;
