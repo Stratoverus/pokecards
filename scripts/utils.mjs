@@ -22,7 +22,7 @@ function getBasePath() {
   }
 
   if (isGitHub) {
-    return isInPokemonDir ? '/pokecards/../' : '/pokecards/';
+    return '/pokecards/';  //Always return /pokecards/ for GitHub Pages
   }
 
   return '';
@@ -37,9 +37,15 @@ export async function loadHeaderFooter() {
 
   //Fix navigation links
   headerElement.querySelectorAll('nav a').forEach(link => {
-    //Remove leading slash if it exists and prepend basePath
-    const href = link.getAttribute('href').replace(/^\//, '');
-    link.href = `${basePath}${href}`;
+    const href = link.getAttribute('href');
+    if (href !== '#') {  //Skip the menu toggle button
+      const isInPokemonDir = window.location.pathname.includes('/pokemon/');
+      if (isInPokemonDir) {
+        link.href = `${basePath}${href}`;
+      } else {
+        link.href = `${basePath}${href}`;
+      }
+    }
   });
 
   //After rendering header, fix image paths
