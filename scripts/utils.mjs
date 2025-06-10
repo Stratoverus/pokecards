@@ -14,24 +14,40 @@ async function loadTemplate(path) {
 
 //Had to make this so that github pages worked and also my local testing environment worked too.
 function getBasePath() {
+  const isInPokemonDir = window.location.pathname.includes('/pokemon/');
+  const localPath = isInPokemonDir ? '../' : '';
+  
   if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
-    return "";
+    return localPath;
   }
 
-  return "/pokecards";
+  return isInPokemonDir ? '/pokecards/../' : '/pokecards';
 }
 
 export async function loadHeaderFooter() {
   const basePath = getBasePath();
 
-  const header = await loadTemplate(`${basePath}/partials/header.html`);
+  const header = await loadTemplate(`${basePath}partials/header.html`);
   const headerElement = document.querySelector("#start-header");
-  renderWithTemplate(header, headerElement)
+  renderWithTemplate(header, headerElement);
 
-  const footer = await loadTemplate(`${basePath}/partials/footer.html`);
+  //After rendering header, fix image paths
+  headerElement.querySelectorAll('img').forEach(img => {
+    if (img.src.includes('images/')) {
+      img.src = `${basePath}${img.getAttribute('src')}`;
+    }
+  });
+
+  const footer = await loadTemplate(`${basePath}partials/footer.html`);
   const footerElement = document.querySelector("#end-footer");
-  renderWithTemplate(footer, footerElement)
+  renderWithTemplate(footer, footerElement);
 
+  //After rendering footer, fix image paths
+  footerElement.querySelectorAll('img').forEach(img => {
+    if (img.src.includes('images/')) {
+      img.src = `${basePath}${img.getAttribute('src')}`;
+    }
+  });
 }
 
 export function navigation() {

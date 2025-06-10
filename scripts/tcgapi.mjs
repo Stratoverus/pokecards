@@ -42,3 +42,27 @@ export async function fetchMultipleCardDetails(cards) {
         return [];
     }
 }
+
+export async function fetchPokemonCards(pokemonName) {
+    const query = `name:"${pokemonName}"`;
+    const requestUrl = `${API_URL}?q=${encodeURIComponent(query)}`;
+
+    try {
+        const response = await fetch(requestUrl, {
+            headers: {
+                "X-Api-Key": API_KEY
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`Bad response: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.data || [];
+
+    } catch (err) {
+        console.error('API Error:', err);
+        return [];
+    }
+}

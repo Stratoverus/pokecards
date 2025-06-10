@@ -13,7 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta property="og:title" content="Pokemon Card Collection | Pokemon Details | Keith Eberhard">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://stratoverus.github.io/pokecards/images/pokemon.webp">
@@ -24,7 +25,15 @@
     </header>
     <main>
         <section class="pokemon-template">
-            
+            <div id="loading-state">
+                <p>Loading Pokemon details...</p>
+                <div class="loading-spinner"></div>
+            </div>
+            <div id="error-state" style="display: none;">
+                <h2>Pokemon Not Found</h2>
+                <p>Sorry, we couldn't find the Pokemon you're looking for.</p>
+                <a href="../pokemon.html" class="button">Return to Pokemon List</a>
+            </div>
         </section>
     </main>
     <footer id="end-footer">

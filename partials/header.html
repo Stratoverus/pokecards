@@ -1,11 +1,30 @@
-<img src="images/logo.webp" alt="logo">
-<h1>Keith's Pokémon Collection</h1>
-<div>
-    <a id="menu" href="#" aria-label="Toggle navigation menu"></a>
-    <nav class="navigation">
-        <a href="index.html" id="home">Home</a>
-        <a href="collection.html" id="collection">My Collection</a>
-        <a href="trading-guide.html" id="trading-guide">Trading Guide</a>
-        <a href="trade.html" id="trade">Trade Request</a>
-    </nav>
+<div class="header-top">
+    <div class="header-left">
+        <h1>Keith's Pokémon Collection</h1>
+    </div>
+    
+    <div class="header-center">
+        <div class="search-container">
+            <input type="search" id="pokemon-search" placeholder="Search for a Pokemon...">
+            <button type="button" id="search-button" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="header-right">
+        <button class="cart-button" aria-label="Shopping cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </button>
+    </div>
 </div>
+
+<a id="menu" href="#" aria-label="Toggle navigation menu"></a>
+    <nav class="navigation">
+    <a href="../index.html" id="home">Home</a>
+    <a href="../pokemon.html" id="pokemon">Pokemon</a>
+    <a href="../collection.html" id="collection">My Collection</a>
+    <a href="../trading-guide.html" id="trading-guide">Trading Guide</a>
+    <a href="../trade.html" id="trade">Trade Request</a>
+</nav>
