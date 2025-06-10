@@ -14,18 +14,7 @@ async function loadTemplate(path) {
 
 //Had to make this so that github pages worked and also my local testing environment worked too.
 function getBasePath() {
-  const isGitHub = window.location.hostname === "stratoverus.github.io";
-  const isInPokemonDir = window.location.pathname.includes('/pokemon/');
-  
-  if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
-    return isInPokemonDir ? '../' : '';
-  }
-
-  if (isGitHub) {
-    return '/pokecards/';  //Always return /pokecards/ for GitHub Pages
-  }
-
-  return '';
+  return window.location.pathname.includes('/pokemon/') ? '../' : '';
 }
 
 export async function loadHeaderFooter() {
@@ -38,17 +27,12 @@ export async function loadHeaderFooter() {
   //Fix navigation links
   headerElement.querySelectorAll('nav a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href !== '#') {  //Skip the menu toggle button
-      const isInPokemonDir = window.location.pathname.includes('/pokemon/');
-      if (isInPokemonDir) {
-        link.href = `${basePath}${href}`;
-      } else {
-        link.href = `${basePath}${href}`;
-      }
+    if (href !== '#') {  // Skip the menu toggle button
+      link.href = `${basePath}${href}`;
     }
   });
 
-  //After rendering header, fix image paths
+  //Fix header image paths
   headerElement.querySelectorAll('img').forEach(img => {
     if (img.src.includes('images/')) {
       img.src = `${basePath}${img.getAttribute('src')}`;
@@ -59,7 +43,7 @@ export async function loadHeaderFooter() {
   const footerElement = document.querySelector("#end-footer");
   renderWithTemplate(footer, footerElement);
 
-  //After rendering footer, fix image paths
+  //Fix footer image paths
   footerElement.querySelectorAll('img').forEach(img => {
     if (img.src.includes('images/')) {
       img.src = `${basePath}${img.getAttribute('src')}`;
