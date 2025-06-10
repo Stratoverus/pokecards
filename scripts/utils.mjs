@@ -35,6 +35,13 @@ export async function loadHeaderFooter() {
   const headerElement = document.querySelector("#start-header");
   renderWithTemplate(header, headerElement);
 
+  //Fix navigation links
+  headerElement.querySelectorAll('nav a').forEach(link => {
+    //Remove leading slash if it exists and prepend basePath
+    const href = link.getAttribute('href').replace(/^\//, '');
+    link.href = `${basePath}${href}`;
+  });
+
   //After rendering header, fix image paths
   headerElement.querySelectorAll('img').forEach(img => {
     if (img.src.includes('images/')) {
