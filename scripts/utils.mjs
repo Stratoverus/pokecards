@@ -12,7 +12,7 @@ async function loadTemplate(path) {
 
 }
 
-//Had to make this so that github pages worked and also my local testing environment worked too.
+//Having this here to fix some 404's that were happening.
 function getBasePath() {
   return window.location.pathname.includes('/pokemon/') ? '../' : '';
 }
@@ -20,32 +20,32 @@ function getBasePath() {
 export async function loadHeaderFooter() {
   const basePath = getBasePath();
   
-  // Load header from root partials directory
+  //Load header from root partials directory
   const header = await loadTemplate(`${basePath}partials/header.html`);
   const headerElement = document.querySelector("#start-header");
   renderWithTemplate(header, headerElement);
 
-  // Fix navigation links
+  //Fix navigation links
   headerElement.querySelectorAll('nav a').forEach(link => {
     const href = link.getAttribute('href');
-    if (href !== '#') {  // Skip the menu toggle button
+    if (href !== '#') {  //Skip the menu toggle button
       link.href = `${basePath}${href}`;
     }
   });
 
-  // Fix header image paths
+  //Fix header image paths
   headerElement.querySelectorAll('img').forEach(img => {
     if (img.src.includes('images/')) {
       img.src = `${basePath}${img.getAttribute('src')}`;
     }
   });
 
-  // Load footer from root partials directory
+  //Load footer from root partials directory
   const footer = await loadTemplate(`${basePath}partials/footer.html`);
   const footerElement = document.querySelector("#end-footer");
   renderWithTemplate(footer, footerElement);
 
-  // Fix footer image paths
+  //Fix footer image paths
   footerElement.querySelectorAll('img').forEach(img => {
     if (img.src.includes('images/')) {
       img.src = `${basePath}${img.getAttribute('src')}`;
