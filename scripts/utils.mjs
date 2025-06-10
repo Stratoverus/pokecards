@@ -14,14 +14,18 @@ async function loadTemplate(path) {
 
 //Had to make this so that github pages worked and also my local testing environment worked too.
 function getBasePath() {
+  const isGitHub = window.location.hostname === "stratoverus.github.io";
   const isInPokemonDir = window.location.pathname.includes('/pokemon/');
-  const localPath = isInPokemonDir ? '../' : '';
   
   if (window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost") {
-    return localPath;
+    return isInPokemonDir ? '../' : '';
   }
 
-  return isInPokemonDir ? '/pokecards/../' : '/pokecards';
+  if (isGitHub) {
+    return isInPokemonDir ? '/pokecards/../' : '/pokecards/';
+  }
+
+  return '';
 }
 
 export async function loadHeaderFooter() {
