@@ -271,6 +271,13 @@ document.querySelector(".close").addEventListener("click", function() {
     document.getElementById("card-modal").style.display = "none";
 });
 
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('card-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
 async function init() {
   await loadHeaderFooter();
   navigation();

@@ -24,7 +24,7 @@
     </header>
     <main class="trade-form-container">
         <h2>Submit a Trade Request</h2>
-        <form id="tradeForm" action="thankyou.html" onsubmit="handleTradeSubmit(event)">
+        <form id="tradeForm">
             <fieldset id="nameEmail">
                 <legend>Your Information</legend>
                 <label for="name">Name:</label>
@@ -34,8 +34,8 @@
             </fieldset>
             <fieldset>
                 <legend>Card You Want</legend>
-                <label for="cardSearch">Search Available Cards:</label>
-                <input type="text" id="cardSearch" name="cardSearch" placeholder="Start typing to search...">
+                <label for="cardSearch">Cards you want, if I don't have them, I'll look for them!:</label>
+                <input type="text" id="cardSearch" name="cardSearch" placeholder="Start typing to enter cards..." autocomplete="off">
                 <div id="searchResults" class="search-results"></div>
                 <div class="selected-cards" id="selectedCards">
                     <!--Having cards here as tags -->

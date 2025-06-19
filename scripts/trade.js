@@ -1,78 +1,50 @@
 import { loadHeaderFooter, navigation, initPokemonSearch } from "./utils.mjs";
 
-let cards = [];
 let selectedCards = new Set();
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const response = await fetch('data/cards.json');
-    cards = await response.json();
-    
+document.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('cardSearch');
-    const searchResults = document.getElementById('searchResults');
-    
-    searchInput.addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        if (searchTerm.length < 2) {
-            searchResults.innerHTML = '';
-            return;
+    const selectedCardsContainer = document.getElementById('selectedCards');
+    const tradeForm = document.getElementById('tradeForm');
+
+    //Adding a card here on enter
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const cardName = searchInput.value.trim();
+            if (cardName && !selectedCards.has(cardName)) {
+                selectedCards.add(cardName);
+                updateSelectedCardsDisplay();
+            }
+            searchInput.value = '';
         }
-        
-        const matches = cards.filter(card => 
-            card['Product Name'].toLowerCase().includes(searchTerm)
-        ).slice(0, 5);
-        
-        searchResults.innerHTML = matches.map(card => {
-            let displayName = card['Product Name'];
-            let variance = card['Variance'];
-            
-            let displayText = variance && variance !== 'Normal' 
-                ? `${displayName} (${variance}) - ${card['Set']}`
-                : `${displayName} - ${card['Set']}`;
-            
-            let cardData = {
-                name: displayName,
-                variance: variance !== 'Normal' ? variance : ''
-            };
-            
-            return `
-                <div class="search-result" onclick='selectCard(${JSON.stringify(JSON.stringify(cardData))})'>
-                    ${displayText}
-                </div>
-            `;
-        }).join('');
     });
+
+    //removing a card when clicked
+    selectedCardsContainer.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-card')) {
+            const cardName = e.target.getAttribute('data-card');
+            selectedCards.delete(cardName);
+            updateSelectedCardsDisplay();
+        }
+    });
+
+    // Properly handle form submission
+    tradeForm.addEventListener('submit', handleTradeSubmit);
 });
-
-function selectCard(cardDataString) {
-    const cardData = JSON.parse(cardDataString);
-    const displayName = cardData.variance 
-        ? `${cardData.name} (${cardData.variance})`
-        : cardData.name;
-    
-    selectedCards.add(displayName);
-    updateSelectedCardsDisplay();
-    document.getElementById('searchResults').innerHTML = '';
-    document.getElementById('cardSearch').value = '';
-}
-
-function removeCard(cardName) {
-    selectedCards.delete(cardName);
-    updateSelectedCardsDisplay();
-}
 
 function updateSelectedCardsDisplay() {
     const container = document.getElementById('selectedCards');
     container.innerHTML = Array.from(selectedCards).map(card => `
         <div class="card-tag">
             ${card}
-            <button type="button" onclick="removeCard('${card}')" class="remove-card" aria-label="Remove ${card}">×</button>
+            <button type="button" class="remove-card" data-card="${card.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/'/g, '&#39;').replace(/</g, '&lt;').replace(/>/g, '&gt;')}" aria-label="Remove ${card}">×</button>
         </div>
     `).join('');
 }
 
 function handleTradeSubmit(event) {
     event.preventDefault();
-    
     const tradeData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
@@ -82,7 +54,6 @@ function handleTradeSubmit(event) {
         comments: document.getElementById('comments').value,
         date: new Date().toLocaleString()
     };
-    
     localStorage.setItem('tradeRequest', JSON.stringify(tradeData));
     window.location.href = 'thankyou.html';
 }

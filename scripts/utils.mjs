@@ -60,6 +60,7 @@ export async function loadHeaderFooter() {
       "collection.html": "collection",
       "trading-guide.html": "trading-guide",
       "trade.html": "trade",
+      "thankyou.html": "trade",
     };
     activeNavId = pageMap[currentPage];
   }
@@ -88,13 +89,25 @@ export function navigation() {
     const mainnav = document.querySelector('.navigation');
     const hambutton = document.querySelector('#menu');
     const chevron = hambutton.querySelector('.chevron');
-    hambutton.addEventListener('click', () => {
+    hambutton.addEventListener('click', (event) => {
         mainnav.classList.toggle('show');
         hambutton.classList.toggle('open');
         chevron.textContent = mainnav.classList.contains('show') ? '▲' : '▼';
+        event.stopPropagation();
     });
 
-    // Set current page label only
+    //Close menu when clicking anywhere outside
+    document.addEventListener('click', (event) => {
+        if (mainnav.classList.contains('show')) {
+            if (!mainnav.contains(event.target) && !hambutton.contains(event.target)) {
+                mainnav.classList.remove('show');
+                hambutton.classList.remove('open');
+                chevron.textContent = '▼';
+            }
+        }
+    });
+
+    //Set current page label
     const currentPath = window.location.pathname.split('/').pop();
     const links = mainnav.querySelectorAll('a');
     let found = false;
@@ -137,7 +150,7 @@ export function initPokemonSearch() {
     resultsContainer.id = 'search-results';
     resultsContainer.style.position = 'absolute';
     resultsContainer.style.background = '#fff';
-    resultsContainer.style.zIndex = '1000';
+    resultsContainer.style.zIndex = '1001';
     resultsContainer.style.maxHeight = '300px';
     resultsContainer.style.overflowY = 'auto';
     resultsContainer.style.border = '1px solid #ccc';

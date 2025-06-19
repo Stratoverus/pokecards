@@ -65,11 +65,36 @@ function displayCards(cards) {
 
     container.innerHTML = cards.map(card => `
         <div class="card">
-            <img src="${card.images.small}" alt="${card.name}">
+            <img src="${card.images.small}" alt="${card.name}" data-large="${card.images.large}">
             <p>${card.set.name} - ${card.number}/${card.set.printedTotal}</p>
         </div>
     `).join('');
+
+    //modal logic here
+    container.addEventListener('click', function(event) {
+        const card = event.target.closest('.card');
+        if (card) {
+            const img = card.querySelector('img');
+            const modal = document.getElementById('card-modal');
+            const modalImg = document.getElementById('modal-img');
+            modalImg.src = img.dataset.large;
+            modalImg.alt = img.alt;
+            modal.style.display = 'block';
+        }
+    });
 }
+
+document.addEventListener('click', function(event) {
+    if (event.target.classList.contains('close')) {
+        document.getElementById('card-modal').style.display = 'none';
+    }
+});
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('card-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+});
 
 async function init() {
     await loadHeaderFooter();

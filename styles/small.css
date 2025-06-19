@@ -102,7 +102,7 @@ nav a:hover {
 }
 
 .navigation {
-    display: none;
+    display: flex;
     flex-direction: column;
     position: absolute;
     background-color: var(--color3);
@@ -110,7 +110,10 @@ nav a:hover {
     right: 0;
     width: 100%;
     text-align: center;
-    z-index: 1001;
+    z-index: 1000;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navigation a {
@@ -129,7 +132,7 @@ nav a:hover {
 }
 
 .navigation.show {
-    display: flex;
+    max-height: 500px;
 }
 
 .button {
@@ -396,69 +399,82 @@ main div {
     z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     overflow: auto;
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.85);
     animation: fadeIn 0.5s ease-in-out;
+    justify-content: center;
+    align-items: center;
+}
+
+#card-modal .modal-content {
+    background-color: var(--color4);
+    color: var(--color6); 
+    margin: 5% auto;
+    padding: 24px 16px 16px 16px;
+    border-radius: 16px;
+    border: 1px solid var(--color8);
+    width: 95%;
+    max-width: 400px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    animation: slideIn 0.5s ease-in-out;
+}
+
+#card-modal .modal-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#card-modal .modal-image img {
+    width: 100%;
+    height: auto;
+    max-width: 320px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+#card-modal .close {
+    color: var(--color8);
+    position: absolute;
+    top: 8px;
+    right: 16px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 10;
+    transition: color 0.2s;
+}
+#card-modal .close:hover, #card-modal .close:focus {
+    color: var(--color2);
+    outline: none;
+}
+
+@media (max-width: 600px) {
+    #card-modal .modal-content {
+        max-width: 95vw;
+        padding: 12px 4px 8px 4px;
+    }
+    #card-modal .modal-image img {
+        max-width: 95vw;
+    }
 }
 
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
-
-.modal-content {
-    background-color: var(--color4);
-    color: var(--color6); 
-    margin: 5% auto;
-    padding: 20px;
-    border: 1px solid var(--color8);
-    width: 95%;
-    max-width: 800px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    animation: slideIn 0.5s ease-in-out;
-}
-
-.modal-image {
-    flex: none;
-    max-width: 100%;
-}
-
-.modal-image img {
-    width: 100%;
-    height: auto;
-    max-width: 280px;
-}
-
-.modal-details {
-    flex: none;
-    padding: 10px 0;
-    max-width: 90%;
-}
-
 @keyframes slideIn {
     from { transform: translateY(-50%); }
     to { transform: translateY(0); }
-}
-
-.close {
-    color: var(--color8);
-    padding: 10px;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    right: 20px;
-    top: 0;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.close:hover {
-    color: var(--color3);
 }
 
 /*Filter Controls*/
@@ -718,6 +734,7 @@ main div {
 /*Thank you page*/
 .thankYou {
     text-align: center;
+    min-height: 100vh;
 }
 
 .thankYou h2 {
@@ -910,6 +927,47 @@ footer img {
     border-radius: 50%;
     margin: 1rem auto;
     animation: spin 1s linear infinite;
+}
+
+/*Pokemon Gallery Card area*/
+.pokemon-cards .card {
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pokemon-cards .card img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.pokemon-cards .card::after {
+    content: "High-Res Picture";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--color6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--heading-font);
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.pokemon-cards .card:hover::after {
+    opacity: 1;
+}
+
+.pokemon-cards .card:hover {
+    transform: scale(1.02);
 }
 
 @keyframes spin {
