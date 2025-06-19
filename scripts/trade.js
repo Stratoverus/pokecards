@@ -1,4 +1,4 @@
-import { loadHeaderFooter, navigation } from "./utils.mjs";
+import { loadHeaderFooter, navigation, initPokemonSearch } from "./utils.mjs";
 
 let cards = [];
 let selectedCards = new Set();
@@ -90,6 +90,7 @@ function handleTradeSubmit(event) {
 async function init() {
   await loadHeaderFooter();
   navigation();
+  initPokemonSearch();
 }
 
 init();

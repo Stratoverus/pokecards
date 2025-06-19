@@ -1,5 +1,5 @@
 import { fetchMultipleCardDetails } from './tcgapi.mjs';
-import { loadHeaderFooter, navigation } from "./utils.mjs";
+import { loadHeaderFooter, navigation, initPokemonSearch } from "./utils.mjs";
 
 const homepageGallery = document.querySelector(".homepage-gallery");
 const STORAGE_KEY = 'pokemonCardDetails';
@@ -183,11 +183,10 @@ document.querySelector(".close").addEventListener("click", function() {
     document.getElementById("card-modal").style.display = "none";
 });
 
-
-
 async function init() {
   await loadHeaderFooter();
   navigation();
+  initPokemonSearch();
 }
 
 init();

@@ -1,3 +1,5 @@
+import { loadHeaderFooter, navigation, initPokemonSearch } from "./utils.mjs";
+
 document.addEventListener('DOMContentLoaded', () => {
     const tradeData = JSON.parse(localStorage.getItem('tradeRequest'));
     if (tradeData) {
@@ -16,3 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.removeItem('tradeRequest');
     }
 });
+
+async function init() {
+  await loadHeaderFooter();
+  navigation();
+  initPokemonSearch();
+}
+
+init();

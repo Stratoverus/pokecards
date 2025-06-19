@@ -1,4 +1,4 @@
-import { loadHeaderFooter, navigation } from "./utils.mjs";
+import { loadHeaderFooter, navigation, initPokemonSearch } from "./utils.mjs";
 import { fetchPokemonCards } from "./tcgapi.mjs";
 
 const BASE_URL = 'https://pokeapi.co/api/v2';
@@ -74,6 +74,7 @@ function displayCards(cards) {
 async function init() {
     await loadHeaderFooter();
     navigation();
+    initPokemonSearch();
 
     const params = new URLSearchParams(window.location.search);
     const pokemonId = params.get('id');

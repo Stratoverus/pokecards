@@ -35,50 +35,55 @@ header {
     color: var(--color6);
     display: flex;
     flex-direction: column;
-    padding: 10px;
 }
 
-.header-top {
-    display: grid;
-    grid-template-columns: 2fr 3fr 1fr;
-    align-items: center;
-    gap: 1rem;
+.header-bottom {
+    position: relative;
+    z-index: 1000;
     width: 100%;
-    border-bottom: 1px solid var(--color6);
-    padding-bottom: 1rem;
-}
-
-header img {
-    display: none;
+    text-align: center;
 }
 
 header h1, div {
-    padding: 10px;
+    padding-top: 10px;
 }
 
 header h1 {
     padding: 10px;
     margin: 0;
     flex: 1;
-    text-align: left;
-}
-
-header div {
-    margin-left: auto;
+    text-align: auto;
+    color: white;
 }
 
 #menu {
-    display: none; /* Hide hamburger menu on desktop */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color3);
+  color: var(--color6);
+  border: none;
+  font-size: 1.1rem;
+  font-family: var(--heading-font);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
 }
 
-#menu::before {
-    content: "≡";
-    font-size: xx-large;
+#menu:focus {
+  outline: 2px solid var(--color7);
 }
 
-#menu.show::before {
-    content: "X";
-    font-size: Larger;
+#menu .chevron {
+  display: inline-block;
+  transition: transform 0.3s;
+  font-size: 1.2em;
+}
+
+#menu.open .chevron {
+  transform: rotate(180deg);
 }
 
 nav {
@@ -97,30 +102,34 @@ nav a:hover {
 }
 
 .navigation {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    background-color: var(--color3);
+    top: 100%;
+    right: 0;
     width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    gap: 2rem;
-    padding: 1rem 0;
-    margin-top: 0.5rem;
-    border-top: 1px solid var(--color6);
+    text-align: center;
+    z-index: 1001;
 }
 
 .navigation a {
-    border: none;
-    padding: 5px 10px;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid white;
 }
 
 .navigation a:first-child {
     border-top: none;
 }
 
+.navigation a.active {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .navigation.show {
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 2rem;
-    padding-left: 20px;
 }
 
 .button {
@@ -140,6 +149,89 @@ nav a:hover {
 .button:hover {
     background-color: var(--color3);
 }
+
+/*Search area*/
+#pokemon-search {
+    width: 93%;
+    margin: 10px;
+}
+
+.search-results {
+    position: relative;
+    background-color: var(--color2);
+    border: 2px solid var(--color4);
+    border-radius: 4px;
+    max-height: 220px;
+    margin-top: 0.5rem;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: none;
+    color: black;
+}
+
+.search-results::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-results::-webkit-scrollbar-track {
+    background: var(--color2);
+}
+
+.search-results::-webkit-scrollbar-thumb {
+    background-color: var(--color4);
+    border-radius: 4px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color3);
+}
+
+.search-result {
+    padding: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    max-width: 50%;
+}
+
+#search-results {
+    width: inherit;
+    max-width: 100%;
+}
+
+.search-result:hover {
+    background-color: var(--color4);
+}
+
+#search-results .search-result-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px 12px;
+  gap: 10px;
+  color: var(--color2);
+  font-family: var(--paragraph-font);
+  font-size: 1rem;
+  border-bottom: 1px solid var(--color8);
+  background: transparent;
+  transition: background 0.2s;
+}
+
+#search-results .search-result-item:last-child {
+  border-bottom: none;
+}
+
+#search-results .search-result-item:hover {
+  background: var(--color4);
+  color: var(--color7);
+}
+
+#search-results img {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  background: #fff;
+}
+
 
 /*Main*/
 main {
@@ -535,45 +627,6 @@ main div {
     color: var(--color3);
 }
 
-.search-results {
-    position: absolute;
-    background-color: var(--color2);
-    border: 2px solid var(--color4);
-    border-radius: 4px;
-    max-height: 200px;
-    overflow-y: auto;
-    margin-top: 0.5rem;
-    max-width: 85%;
-    width: calc(100% - 2rem);
-    z-index: 1000;
-}
-
-.search-results::-webkit-scrollbar {
-    width: 8px;
-}
-
-.search-results::-webkit-scrollbar-track {
-    background: var(--color2);
-}
-
-.search-results::-webkit-scrollbar-thumb {
-    background-color: var(--color4);
-    border-radius: 4px;
-}
-
-.search-results::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color3);
-}
-
-.search-result {
-    padding: 0.8rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.search-result:hover {
-    background-color: var(--color4);
-}
 
 /* Trade Form Styles */
 .trade-form-container h2 {
@@ -785,7 +838,7 @@ footer img {
 /*Individual pokemon pages*/
 .pokemon-profile {
     max-width: 800px;
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 1rem;
 }
 
@@ -823,7 +876,7 @@ footer img {
 
 .pokemon-cards {
     max-width: 1200px;
-    margin: 2rem auto;
+    margin: 0 auto;
     padding: 1rem;
 }
 
@@ -867,84 +920,4 @@ footer img {
 #error-state {
     text-align: center;
     padding: 2rem;
-}
-
-/*Updated Header testing area*/
-.header-top {
-    display: grid;
-    grid-template-columns: 2fr 3fr 1fr;
-    align-items: center;
-    gap: 1rem;
-    width: 100%;
-}
-
-/* Adjust menu positioning */
-#menu {
-    color: var(--color6);
-    display: inline-block;
-    margin-left: auto;
-}
-
-/* Navigation adjustments */
-.navigation {
-    display: none;
-    width: 100%;
-    position: static;
-    padding: 10px 0;
-    margin-top: 10px;
-    border-top: 1px solid var(--color6);
-}
-
-.navigation.show {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 2rem;
-    padding-left: 20px;
-}
-
-/* Search container styles */
-.search-container {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-}
-
-#pokemon-search {
-    flex: 1;
-    max-width: 300px;
-    padding: 0.5rem;
-    border: 2px solid var(--color8);
-    border-radius: 20px;
-    font-size: 1rem;
-}
-
-/*Here for testing for now, will clean this up later with large/small css files*/
-@media screen and (max-width: 768px) {
-    .header-top {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    #menu {
-        display: block;
-        margin: 1rem auto;
-    }
-
-    .navigation {
-        display: none;
-    }
-
-    .navigation.show {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .navigation a {
-        width: 100%;
-        text-align: center;
-        padding: 0.5rem;
-    }
 }

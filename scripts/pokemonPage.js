@@ -1,4 +1,4 @@
-import { loadHeaderFooter, navigation } from "./utils.mjs";
+import { loadHeaderFooter, navigation, initPokemonSearch } from "./utils.mjs";
 import { getPokemonList, getPokemonDetails, createPokemonCard } from "./pokeapi.mjs";
 
 let offset = 0;
@@ -41,6 +41,7 @@ function handleScroll() {
 async function init() {
     await loadHeaderFooter();
     navigation();
+    initPokemonSearch();
     
     await loadPokemon();
     

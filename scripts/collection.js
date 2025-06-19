@@ -1,6 +1,6 @@
 //Collections page JS and logic
 import { fetchMultipleCardDetails } from './tcgapi.mjs';
-import { navigation,loadHeaderFooter } from './utils.mjs';
+import { navigation,loadHeaderFooter,initPokemonSearch } from './utils.mjs';
 
 const filterSelect = document.getElementById('filterSelect');
 const sortSelect = document.getElementById('sortSelect');
@@ -274,6 +274,7 @@ document.querySelector(".close").addEventListener("click", function() {
 async function init() {
   await loadHeaderFooter();
   navigation();
+  initPokemonSearch();
 }
 
 init();
