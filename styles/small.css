@@ -861,6 +861,7 @@ footer img {
 
 .pokemon-images {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 2rem;
     margin: 2rem 0;
